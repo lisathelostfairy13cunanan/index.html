@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fare Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#FFF7CC;
+display:flex;
+flex-direction:column;
+min-height:100vh;
+}
+
+.navbar{
+background:white;
+padding:12px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #eee;
+}
+
+.logo{
+font-weight:600;
+color:#333;
+}
+
+.nav-links a{
+margin:0 10px;
+text-decoration:none;
+color:#555;
+font-size:14px;
+}
+
+.btn{
+background:#FFE066;
+padding:6px 15px;
+border-radius:20px;
+border:none;
+cursor:pointer;
+}
+
+main{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+width:350px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+h2{
+margin-top:0;
+font-weight:500;
+}
+
+select,button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:12px;
+border:1px solid #eee;
+font-family:'Poppins';
+}
+
+button{
+background:#FFE066;
+border:none;
+font-weight:500;
+cursor:pointer;
+}
+
+.result{
+margin-top:15px;
+font-size:14px;
+color:#555;
+}
+
+footer{
+background:white;
+padding:10px;
+text-align:center;
+border-top:1px solid #eee;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<div class="logo">bunanan fare guide</div>
+
+<div class="nav-links">
+<a href="index.html">home</a>
+<a href="#">fare matrix</a>
+<a href="#">schedule</a>
+<a href="#">help</a>
+</div>
+
+<a href="registration.html"><button class="btn">create account</button></a>
+</div>
+
+<main>
+<div class="card">
+
+<h2>calculate fare</h2>
+
+<select id="pickup">
+<option>select pickup</option>
+<option>Cubao</option>
+<option>Ayala</option>
+<option>Taft</option>
+<option>North Ave</option>
+<option>Ortigas</option>
+<option>BGC</option>
+<option>UST</option>
+<option>UP Diliman</option>
+</select>
+
+<select id="dropoff">
+<option>select destination</option>
+<option>Cubao</option>
+<option>Ayala</option>
+<option>Taft</option>
+<option>North Ave</option>
+<option>Ortigas</option>
+<option>BGC</option>
+<option>UST</option>
+<option>UP Diliman</option>
+</select>
+
+<button onclick="calcFare()">compute</button>
+
+<div class="result" id="output">estimating for input . . .</div>
+
+<button onclick="next()">continue</button>
+
+</div>
+</main>
+
+<footer>
+Bunanan 26 🍌🌼
+</footer>
+
+<script>
+const dist = {
+"Cubao-Ayala":10,
+"Taft-North Ave":16,
+"Cubao-Ortigas":5,
+"Ayala-BGC":4,
+"UST-UP Diliman":7
+};
+
+function calcFare(){
+let p = pickup.value;
+let d = dropoff.value;
+
+if(p==d || p.includes("select") || d.includes("select")){
+output.innerHTML="select valid locations";
+return;
+}
+
+let key = p+"-"+d;
+let rkey = d+"-"+p;
+
+let distance = dist[key] || dist[rkey] || 8;
+
+let fare = 50 + (Math.max(distance-2,0)*15);
+
+output.innerHTML = `
+distance: ${distance} km <br>
+fare: ₱${fare.toFixed(2)}
+`;
+
+localStorage.setItem("fare",fare);
+}
+
+function next(){
+window.location.href="registration.html";
+}
+</script>
+
+</body>
+</html>
