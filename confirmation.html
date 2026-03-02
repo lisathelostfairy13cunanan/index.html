@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>confirmation</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Poppins';
+background:#FFF7CC;
+display:flex;
+flex-direction:column;
+min-height:100vh;
+}
+
+.navbar{
+background:white;
+padding:12px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #eee;
+}
+
+.logo{
+font-weight:600;
+color:#333;
+}
+
+.nav-links a{
+margin:0 10px;
+text-decoration:none;
+color:#555;
+font-size:14px;
+}
+
+.btn{
+background:#FFE066;
+padding:6px 15px;
+border-radius:20px;
+border:none;
+cursor:pointer;
+}
+
+main{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+width:350px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+border-radius:12px;
+border:none;
+background:#FFE066;
+cursor:pointer;
+}
+
+footer{
+background:white;
+text-align:center;
+padding:10px;
+border-top:1px solid #eee;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<div class="logo">bunanan fare guide</div>
+
+<div class="nav-links">
+<a href="index.html">home</a>
+<a href="#">fare matrix</a>
+<a href="#">schedule</a>
+<a href="#">help</a>
+</div>
+
+<a href="registration.html"><button class="btn">create account</button></a>
+</div>
+
+<main>
+<div class="card">
+
+<h2>booking confirmed!</h2>
+
+<p id="name"></p>
+<p id="fare"></p>
+
+<p>driver arriving in 3–5 mins</p>
+
+<button onclick="home()">back to home</button>
+
+</div>
+</main>
+
+<footer>
+Bunanan 26 🍌🌼
+</footer>
+
+<script>
+name.innerText = "name: " + localStorage.getItem("name");
+fare.innerText = "fare: ₱" + localStorage.getItem("fare");
+
+function home(){
+window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
